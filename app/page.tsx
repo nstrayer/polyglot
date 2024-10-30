@@ -51,13 +51,13 @@ export default function Chat() {
       <div className="min-h-screen w-full relative">
         <div className="absolute inset-0 bg-gradient-to-tl from-[#447099]/50 to-[#EE6331]/50" />
         <div className="flex flex-col w-full max-w-5xl h-screen py-24 mx-auto stretch px-4 relative">
-          <div className="text-center mb-8">
+          <div className="text-center mb-2">
             <h1 className="text-4xl font-bold mb-2">Polyglot</h1>
             <p className="text-gray-600">Write in your preferred language, run in your required language.</p>
           </div>
-          <div id='card-container' className="flex flex-1 gap-4 overflow-auto min-h-0 relative">
-            <div className="absolute left-1/2 -translate-x-1/2 z-10 -translate-y-14 rotate-12">
-              <ConversionArrow />
+          <div id='card-container' className="flex flex-1 gap-4 overflow-auto min-h-0 relative pt-12">
+            <div className="absolute left-1/2 -translate-x-1/2 z-10 -translate-y-28 rotate-6 w-64 h-64">
+              <ConversionArrow isLoading={isLoading} />
             </div>
             <Card className="flex-1 min-w-[300px] max-w-[500px] flex flex-col h-full shrink-0">
               <CardHeader>

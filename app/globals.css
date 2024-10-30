@@ -78,3 +78,12 @@ textarea {
     background-color: #EE6331;
   }
 }
+
+@keyframes fillPulse {
+  0%, 100% {
+    fill: #447099;
+  }
+  50% {
+    fill: #EE6331;
+  }
+}
