@@ -2,7 +2,7 @@
 
 import { openai } from '@ai-sdk/openai';
 import { streamObject } from 'ai';
-import { TranslationObjectSchema } from '@/app/api/schemas/translation';
+import { TranslationObjectSchema } from '@/app/api/schemas/translation-object-schema';
 
 
 // Allow streaming responses up to 30 seconds
@@ -42,12 +42,14 @@ export async function POST(req: Request) {
     }
 
     const result = await streamObject({
-        model: openai('gpt-4o-mini'),
+        model: openai('gpt-4o'),
         schema: TranslationObjectSchema,
         system: `
-You are a script translator. You are given a script written in R and you need to translate it into a python script. Additionally, you are given a list of available libraries as returned by the call to \`pip list\`.
-If there are any problems with the translation or libraries that the user doesn't already have, let the user know.
-Optionally, the user may provide a translated script and comments about the translation. Use these to improve your translation.
+You are a script translator. You are given a script written in R and you need to translate it into a python script. 
+Additionally, you are given a list of python libraries the user already has installed as returned by the call to \`pip list\`.
+If there are any problems with the translation or libraries that the user does not have installed, note these.
+Optionally, the user may provide a translated script and comments about the translation. Use these to improve your translation. 
+If the comments field is empty, still improve the translation by checking libraries and the original script.
 `,
         prompt,
     });

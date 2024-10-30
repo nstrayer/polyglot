@@ -106,19 +106,13 @@ export default function Chat() {
               </div>
             )}
             {
-              res?.librariesNeeded &&
+              res?.installCommand &&
               <>
-                <h4 className="text-lg font-bold mb-2 pt-4 text-center">Libraries Needed</h4>
-                <ul>
-                  {res.librariesNeeded.map(library => (
-                    <li key={library} className="font-mono">{library}</li>
-                  ))}
-                </ul>
-                {res?.installCommand && (
-                  <code className="block text-center mt-2 p-2 bg-gray-100 rounded font-mono">
-                    {res.installCommand}
-                  </code>
-                )}
+                <h4 className="text-lg font-bold mb-2 pt-4 text-center">Install Command</h4>
+                <p className="text-gray-600 mb-2">Copy and paste this command into your terminal to install the necessary libraries.</p>
+                <code className="block mt-2 p-2 bg-gray-100 rounded font-mono">
+                  {res.installCommand}
+                </code>
               </>
             }
             {

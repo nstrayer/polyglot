@@ -1,5 +1,5 @@
 import { experimental_useObject as useObject } from 'ai/react';
-import { TranslationObjectSchema } from '../app/api/schemas/translation';
+import { TranslationObjectSchema } from '../app/api/schemas/translation-object-schema';
 import { useState } from 'react';
 import { starterScript, samplePipList } from '../app/constants/constants';
 
