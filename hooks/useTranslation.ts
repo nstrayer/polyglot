@@ -34,6 +34,8 @@ export function useTranslation() {
         userComments,
         setUserComments,
         handleConvert,
-        handleUpdate
+        handleUpdate,
+        availableLibraries,
+        setAvailableLibraries
     };
 } 
