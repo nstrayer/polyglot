@@ -1,0 +1,215 @@
+export const starterScript = `
+library(dotenv) # Will read OPENAI_API_KEY from .env file
+# elmer is a package for creating and managing chatbots
+library(elmer)
+
+chat <- chat_openai(
+  model = "gpt-4o-mini",
+  system_prompt = "You are a terse assistant.",
+)
+chat$chat("What is the capital of the moon?")
+
+# The \`chat\` object is stateful, so this continues the existing conversation
+chat$chat("Are you sure about that?")
+`
+
+// Other constants can be added here 
+export const samplePipList = `
+Package                   Version        Editable project location
+------------------------- -------------- -----------------------------------------------------
+altair                    5.4.0
+anyio                     4.4.0
+anywidget                 0.9.13
+appnope                   0.1.4
+argon2-cffi               23.1.0
+argon2-cffi-bindings      21.2.0
+arrow                     1.3.0
+asttokens                 2.4.1
+async-lru                 2.0.4
+attrs                     23.2.0
+Babel                     2.15.0
+beautifulsoup4            4.12.3
+bleach                    6.1.0
+bokeh                     3.4.3
+bqplot                    0.12.43
+branca                    0.7.2
+certifi                   2024.7.4
+cffi                      1.17.0
+charset-normalizer        3.3.2
+click                     8.1.7
+colorcet                  3.1.0
+colour                    0.1.5
+comm                      0.2.2
+commonmark                0.9.1
+compatibility             1.0.1
+contourpy                 1.2.1
+cycler                    0.12.1
+debugpy                   1.8.2
+decorator                 5.1.1
+defusedxml                0.7.1
+depth_pro                 0.1            /Users/nicholasstrayer/dev/positron-work/ml-depth-pro
+duckdb                    1.0.0
+executing                 2.0.1
+fastcore                  1.5.29
+fastjsonschema            2.20.0
+filelock                  3.15.4
+folium                    0.17.0
+fonttools                 4.53.1
+fqdn                      1.5.1
+fsspec                    2024.9.0
+gdown                     5.2.0
+geojson                   3.1.0
+geopandas                 1.0.1
+great-tables              0.10.0
+h11                       0.14.0
+holoviews                 1.19.1
+htmltools                 0.5.3
+httpcore                  1.0.5
+httpx                     0.27.0
+huggingface-hub           0.25.2
+hvplot                    0.10.0
+idna                      3.7
+importlib_metadata        8.1.0
+importlib_resources       6.4.0
+iniconfig                 2.0.0
+ipyevents                 2.0.2
+ipyfilechooser            0.6.0
+ipykernel                 6.29.3
+ipyleaflet                0.19.2
+ipympl                    0.9.4
+ipython                   8.26.0
+ipython-genutils          0.2.0
+ipytree                   0.2.2
+ipyvue                    1.11.1
+ipyvuetify                1.9.4
+ipywidgets                8.1.2
+isoduration               20.11.0
+jedi                      0.19.1
+Jinja2                    3.1.4
+joblib                    1.4.2
+json5                     0.9.25
+jsonpointer               3.0.0
+jsonschema                4.23.0
+jsonschema-specifications 2023.12.1
+jupyter_client            8.6.2
+jupyter_core              5.7.2
+jupyter-events            0.10.0
+jupyter-leaflet           0.19.2
+jupyter-lsp               2.2.5
+jupyter_server            2.14.2
+jupyter_server_terminals  0.5.3
+jupyterlab                4.2.4
+jupyterlab_pygments       0.3.0
+jupyterlab_server         2.27.3
+jupyterlab_widgets        3.0.11
+kiwisolver                1.4.5
+leafmap                   0.36.2
+linkify-it-py             2.0.3
+Markdown                  3.6
+markdown-it-py            3.0.0
+MarkupSafe                2.1.5
+matplotlib                3.8.2
+matplotlib-inline         0.1.7
+mdit-py-plugins           0.4.1
+mdurl                     0.1.2
+mistune                   3.0.2
+mizani                    0.11.4
+mpmath                    1.3.0
+narwhals                  1.4.1
+nbclient                  0.10.0
+nbconvert                 7.16.4
+nbformat                  5.10.4
+nest-asyncio              1.6.0
+networkx                  3.4.1
+notebook                  7.2.1
+notebook_shim             0.2.4
+numpy                     1.26.3
+overrides                 7.7.0
+packaging                 24.1
+pandas                    2.2.0
+pandocfilters             1.5.1
+panel                     1.4.4
+param                     2.1.1
+parso                     0.8.4
+patsy                     0.5.6
+pexpect                   4.9.0
+pillow                    10.4.0
+pillow_heif               0.18.0
+pip                       24.0
+platformdirs              4.2.2
+plotly                    5.23.0
+plotnine                  0.13.6
+pluggy                    1.5.0
+polars                    0.20.31
+prometheus_client         0.20.0
+prompt_toolkit            3.0.47
+psutil                    6.0.0
+psygnal                   0.11.1
+ptyprocess                0.7.0
+pure-eval                 0.2.2
+pyarrow                   16.1.0
+pycparser                 2.22
+Pygments                  2.18.0
+pyogrio                   0.9.0
+pyparsing                 3.1.2
+pyproj                    3.6.1
+pyshp                     2.3.1
+PySocks                   1.7.1
+pystac                    1.10.1
+pystac-client             0.8.3
+pytest                    8.0.2
+pytest-asyncio            0.23.5
+pytest-mock               3.12.0
+python-box                7.2.0
+python-dateutil           2.9.0.post0
+python-json-logger        2.0.7
+pytz                      2024.1
+pyviz_comms               3.0.2
+PyYAML                    6.0.1
+pyzmq                     26.0.3
+referencing               0.35.1
+requests                  2.32.3
+rfc3339-validator         0.1.4
+rfc3986-validator         0.1.1
+rpds-py                   0.19.1
+ruff                      0.6.2
+safetensors               0.4.5
+scikit-learn              1.5.1
+scipy                     1.14.0
+scooby                    0.10.0
+Send2Trash                1.8.3
+setuptools                70.3.0
+shapely                   2.0.5
+six                       1.16.0
+sniffio                   1.3.1
+soupsieve                 2.5
+SQLAlchemy                2.0.28
+stack-data                0.6.3
+statsmodels               0.14.2
+sympy                     1.13.3
+tenacity                  9.0.0
+terminado                 0.18.1
+threadpoolctl             3.5.0
+timm                      1.0.10
+tinycss2                  1.3.0
+torch                     2.4.1
+torchvision               0.19.1
+tornado                   6.4.1
+tqdm                      4.66.4
+traitlets                 5.14.3
+traittypes                0.2.1
+types-python-dateutil     2.9.0.20240821
+typing_extensions         4.12.2
+tzdata                    2024.1
+uc-micro-py               1.0.3
+uri-template              1.3.0
+urllib3                   2.2.2
+wcwidth                   0.2.13
+webcolors                 24.8.0
+webencodings              0.5.1
+websocket-client          1.8.0
+whitebox                  2.3.5
+whiteboxgui               2.3.0
+widgetsnbextension        4.0.11
+xyzservices               2024.6.0
+zipp                      3.19.2`

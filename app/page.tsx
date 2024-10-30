@@ -6,25 +6,19 @@ import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-r';
 import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-python';
-import { experimental_useObject as useObject } from 'ai/react';
-import { TranslationObjectSchema } from './api/schemas/translation';
-import { useState } from 'react';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function Chat() {
-
-  const { object, submit, isLoading: isLoadingObject, stop } = useObject({
-    api: '/api/use-translate-script',
-    schema: TranslationObjectSchema,
-  });
-  const [textContent, setTextContent] = useState('');
-
-  const translatedScript = object?.script?.contents;
-  const issuesEncountered = object?.script?.issuesEncountered;
-  const librariesNeeded = object?.script?.librariesNeeded;
-
-  console.log('object', object);
-
-  // const { textContent, setTextContent, translatedScript, explanation, handleSend, isLoading } = useTranslationStream();
+  const {
+    res,
+    isLoading,
+    textContent,
+    setTextContent,
+    userComments,
+    setUserComments,
+    handleConvert,
+    handleUpdate
+  } = useTranslation();
 
   return (
     <div className="flex flex-col w-full max-w-5xl h-screen py-24 mx-auto stretch px-4">
@@ -48,9 +42,7 @@ export default function Chat() {
               }}
             />
             <button
-              onClick={() => {
-                submit({ input: textContent });
-              }}
+              onClick={handleConvert}
               className="w-full py-2 mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 shadow-sm"
             >
               Convert
@@ -59,15 +51,15 @@ export default function Chat() {
         </div>
         <div className="flex-1 p-4 rounded-lg bg-blue-200 h-full overflow-auto min-w-[300px] max-w-[500px]">
           <h2 className="text-lg font-bold mb-2 text-center">Python</h2>
-          {isLoadingObject && (
+          {isLoading && (
             <div className="flex justify-center my-4">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
             </div>
           )}
-          {translatedScript && (
+          {res?.contents && (
             <div className="bg-white shadow-sm">
               <Editor
-                value={translatedScript}
+                value={res.contents}
                 onValueChange={() => { }}
                 highlight={code => highlight(code, languages.python, 'python')}
                 padding={10}
@@ -81,26 +73,48 @@ export default function Chat() {
             </div>
           )}
           {
-            librariesNeeded &&
+            res?.librariesNeeded &&
             <>
               <h4 className="text-lg font-bold mb-2 pt-4 text-center">Libraries Needed</h4>
               <ul>
-                {librariesNeeded.map(library => (
+                {res.librariesNeeded.map(library => (
                   <li key={library} className="font-mono">{library}</li>
                 ))}
               </ul>
+              {res?.installCommand && (
+                <code className="block text-center mt-2 p-2 bg-gray-100 rounded font-mono">
+                  {res.installCommand}
+                </code>
+              )}
             </>
           }
           {
-            issuesEncountered &&
+            res?.issuesEncountered &&
             <>
               <h4 className="text-lg font-bold mb-2 pt-4 text-center">Potential Issues</h4>
               <ReactMarkdown className="rounded-lg">
-                {issuesEncountered}
+                {res.issuesEncountered}
               </ReactMarkdown>
             </>
-
           }
+
+          {res?.contents && !isLoading && (
+            <div className="mt-4">
+              <h4 className="text-lg font-bold mb-2 text-center">Feedback</h4>
+              <textarea
+                value={userComments}
+                onChange={(e) => setUserComments(e.target.value)}
+                className="w-full p-2 rounded-lg"
+                placeholder="Any comments about the translation?"
+              />
+              <button
+                onClick={handleUpdate}
+                className="w-full py-2 mt-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 shadow-sm"
+              >
+                Update
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
