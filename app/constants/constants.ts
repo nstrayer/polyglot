@@ -1,5 +1,4 @@
-export const starterScript = `
-library(dotenv) # Will read OPENAI_API_KEY from .env file
+export const starterScript = `library(dotenv) # Will read OPENAI_API_KEY from .env file
 # elmer is a package for creating and managing chatbots
 library(elmer)
 
@@ -14,8 +13,7 @@ chat$chat("Are you sure about that?")
 `
 
 // Other constants can be added here 
-export const samplePipList = `
-Package                  Version
+export const samplePipList = `Package                  Version
 ------------------------ -----------
 aiohappyeyeballs         2.4.3
 aiohttp                  3.10.10

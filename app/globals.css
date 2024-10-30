@@ -64,3 +64,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+textarea {
+  outline-offset: -1px !important; 
+}
+
+@keyframes colorPulse {
+  0%, 100% {
+    background-color: #447099;
+  }
+  50% {
+    background-color: #EE6331;
+  }
+}
