@@ -63,6 +63,7 @@ export default function Chat() {
             <Card className="flex-1 min-w-[300px] md:max-w-[500px] flex flex-col h-full shrink-0">
               <CardHeader>
                 <LanguageSelector
+                  sourceOrTarget='source'
                   currentLanguage={sourceLanguage}
                   setLanguage={setSourceLanguage}
                   knownLanguages={knownLanguages}
@@ -105,6 +106,7 @@ export default function Chat() {
             <Card className="flex-1 min-w-[300px] md:max-w-[500px] flex flex-col h-full shrink-0">
               <CardHeader className="relative">
                 <LanguageSelector
+                  sourceOrTarget='target'
                   currentLanguage={targetLanguage}
                   setLanguage={setTargetLanguage}
                   knownLanguages={knownLanguages}
