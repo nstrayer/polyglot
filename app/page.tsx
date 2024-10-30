@@ -55,11 +55,12 @@ export default function Chat() {
             <h1 className="text-4xl font-bold mb-2">Polyglot</h1>
             <p className="text-gray-600">Write in your preferred language, run in your required language.</p>
           </div>
-          <div id='card-container' className="flex flex-1 gap-4 overflow-auto min-h-0 relative pt-12">
-            <div className="absolute left-1/2 -translate-x-1/2 z-10 -translate-y-28 rotate-6 w-64 h-64">
+          <div id='card-container' className="flex flex-col md:flex-row flex-1 md:gap-4 overflow-auto min-h-0 relative pt-12">
+            <div className="absolute left-1/2 -translate-x-1/2 z-10 -translate-y-28 rotate-6 w-64 h-64 
+              hidden md:block">
               <ConversionArrow isLoading={isLoading} />
             </div>
-            <Card className="flex-1 min-w-[300px] max-w-[500px] flex flex-col h-full shrink-0">
+            <Card className="flex-1 min-w-[300px] md:max-w-[500px] flex flex-col h-full shrink-0">
               <CardHeader>
                 <LanguageSelector
                   currentLanguage={sourceLanguage}
@@ -95,7 +96,13 @@ export default function Chat() {
               </CardFooter>
             </Card>
 
-            <Card className="flex-1 min-w-[300px] max-w-[500px] flex flex-col h-full shrink-0">
+            <div className="md:hidden flex justify-center w-full -my-4 -translate-y-1">
+              <div className="w-48 h-48 rotate-90">
+                <ConversionArrow isLoading={isLoading} />
+              </div>
+            </div>
+
+            <Card className="flex-1 min-w-[300px] md:max-w-[500px] flex flex-col h-full shrink-0">
               <CardHeader className="relative">
                 <LanguageSelector
                   currentLanguage={targetLanguage}
