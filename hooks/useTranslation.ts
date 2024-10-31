@@ -1,7 +1,7 @@
 import { experimental_useObject as useObject } from 'ai/react';
 import { TranslationObjectSchema, TranslationRequest, KnownLanguages, PartialTranslationObject, ModelOptions, modelOptions } from '../app/api/schemas/translation-object-schema';
 import { useState, useEffect, useCallback } from 'react';
-import { starterScript, samplePipList } from '../app/constants/constants';
+import { starterScript, samplePipList } from '../lib/constants';
 
 export function useTranslation() {
     const { object: res, submit, isLoading, stop } = useObject({
