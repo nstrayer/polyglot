@@ -10,3 +10,15 @@ chat$chat("What is the capital of the moon?")
 
 # The `chat` object is stateful, so this continues the existing conversation
 chat$chat("Are you really sure about that?")
+
+
+
+library(nycflights13)
+library(tidyverse)
+flights
+
+filter(flights, month == 1, day == 1)
+
+jan1 <- filter(flights, month == 1, day == 1)
+
+(dec25 <- filter(flights, month == 12, day == 25))
