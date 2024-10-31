@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(
+        inter.className,
+        "relative min-h-screen"
+      )}>
+        <div className="absolute inset-0 bg-gradient-to-tl from-[#447099]/50 to-[#EE6331]/50" />
+        <div className="relative">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

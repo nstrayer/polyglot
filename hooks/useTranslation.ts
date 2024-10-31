@@ -1,5 +1,5 @@
 import { experimental_useObject as useObject } from 'ai/react';
-import { TranslationObjectSchema, TranslationRequest, KnownLanguages, PartialTranslationObject } from '../app/api/schemas/translation-object-schema';
+import { TranslationObjectSchema, TranslationRequest, KnownLanguages, PartialTranslationObject, ModelOptions, modelOptions } from '../app/api/schemas/translation-object-schema';
 import { useState, useEffect, useCallback } from 'react';
 import { starterScript, samplePipList } from '../app/constants/constants';
 
@@ -15,6 +15,7 @@ export function useTranslation() {
     const [sourceLanguage, setSourceLanguage] = useState<KnownLanguages>('R');
     const [targetLanguage, setTargetLanguage] = useState<KnownLanguages>('python');
     const [validationError, setValidationError] = useState<string | null>(null);
+    const [model, setModel] = useState<ModelOptions>(modelOptions.anthropic[0]);
 
     useEffect(() => {
         if (res) {
@@ -22,7 +23,7 @@ export function useTranslation() {
         }
     }, [res]);
 
-    const cancelTranslation = useCallback(() => {
+    const clearTranslation = useCallback(() => {
         setTranslationObject(undefined);
         stop();
     }, [stop]);
@@ -33,17 +34,20 @@ export function useTranslation() {
         } else {
             setValidationError(null);
         }
-        cancelTranslation();
-    }, [sourceLanguage, targetLanguage, cancelTranslation]);
+        clearTranslation();
+    }, [sourceLanguage, targetLanguage, clearTranslation]);
+
 
     const handleConvert = () => {
         if (validationError) return;
+        clearTranslation();
 
         const request: TranslationRequest = {
             script: textContent,
             availableLibraries,
             sourceLanguage,
-            targetLanguage
+            targetLanguage,
+            model
         };
         submit(request);
     };
@@ -58,7 +62,8 @@ export function useTranslation() {
             userComments,
             availableLibraries,
             sourceLanguage,
-            targetLanguage
+            targetLanguage,
+            model
         };
         submit(request);
         setUserComments('');
@@ -80,6 +85,8 @@ export function useTranslation() {
         targetLanguage,
         setTargetLanguage,
         validationError,
-        cancelTranslation,
+        cancelTranslation: clearTranslation,
+        model,
+        setModel
     };
 } 
