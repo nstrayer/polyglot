@@ -1,71 +1,43 @@
 'use client';
 
-import { Settings, Bot, Sparkles } from "lucide-react";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { modelOptions, ModelOptions } from "@/app/api/schemas/translation-object-schema";
+import { Settings } from "lucide-react";
+import { KnownLanguages, ModelOptions } from "@/app/api/schemas/translation-object-schema";
 import {
     Sidebar,
     SidebarContent,
     SidebarGroup,
-    SidebarGroupContent,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuSub,
-    SidebarMenuButton,
-    SidebarMenuItem,
+    SidebarHeader,
 } from "@/components/ui/sidebar";
+import { LibrariesSection } from "@/components/LibrariesSection";
+import { ModelSelection } from "@/components/ModelSelection";
 
 interface ModelSettingsDrawerProps {
     currentModel: ModelOptions;
     onModelChange: (model: ModelOptions) => void;
+    availableLibraries: string;
+    setAvailableLibraries: (libraries: string) => void;
+    targetLanguage: KnownLanguages;
 }
 
-export function AppSidebar({ currentModel, onModelChange }: ModelSettingsDrawerProps) {
-    // Convert modelOptions into a more structured format for the sidebar
-    const modelGroups = Object.entries(modelOptions).map(([provider, models]) => ({
-        provider,
-        models: models.map(model => ({
-            name: model,
-            icon: provider === 'openai' ? Sparkles : Bot
-        }))
-    }));
-
+export function AppSidebar({ currentModel, onModelChange, availableLibraries, setAvailableLibraries, targetLanguage }: ModelSettingsDrawerProps) {
     return (
         <Sidebar>
-            <SidebarContent>
-                <SidebarGroup>
-                    <SidebarGroupLabel>
-                        Use which model?
-                    </SidebarGroupLabel>
-                    {modelGroups.map(group => (
-                        <SidebarGroup key={group.provider}>
-                            <SidebarGroupLabel>
-                                {group.provider.toUpperCase()} Models
-                            </SidebarGroupLabel>
-                            <SidebarGroupContent>
-                                <SidebarMenu>
-                                    {group.models.map((model) => (
-                                        <SidebarMenuItem key={model.name}>
-                                            <SidebarMenuButton
-                                                onClick={() => onModelChange(model.name as ModelOptions)}
-                                                className={currentModel === model.name ? "bg-muted" : ""}
-                                            >
-                                                <model.icon className="h-4 w-4 mr-2" />
-                                                <span>{model.name}</span>
-                                            </SidebarMenuButton>
-                                        </SidebarMenuItem>
-                                    ))}
-                                </SidebarMenu>
-                            </SidebarGroupContent>
-                        </SidebarGroup>
-                    ))}
-                </SidebarGroup>
+            <SidebarHeader>
+                App Settings
+                <Separator />
+            </SidebarHeader>
+            <SidebarContent className="p-2 gap-6">
+
+                <ModelSelection
+                    currentModel={currentModel}
+                    onModelChange={onModelChange}
+                />
+                <Separator />
+                <LibrariesSection
+                    availableLibraries={availableLibraries}
+                    setAvailableLibraries={setAvailableLibraries}
+                    targetLanguage={targetLanguage}
+                />
             </SidebarContent>
         </Sidebar>
     );
@@ -73,6 +45,7 @@ export function AppSidebar({ currentModel, onModelChange }: ModelSettingsDrawerP
 
 import { useSidebar } from "@/components/ui/sidebar"
 import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
 
 export function SidebarTrigger() {
     const { toggleSidebar } = useSidebar()

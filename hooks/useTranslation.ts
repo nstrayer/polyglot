@@ -15,7 +15,7 @@ export function useTranslation() {
     const [sourceLanguage, setSourceLanguage] = useState<KnownLanguages>('R');
     const [targetLanguage, setTargetLanguage] = useState<KnownLanguages>('python');
     const [validationError, setValidationError] = useState<string | null>(null);
-    const [model, setModel] = useState<ModelOptions>(modelOptions.anthropic[0]);
+    const [model, setModel] = useState<ModelOptions>(modelOptions.Anthropic[0]);
 
     useEffect(() => {
         if (res) {

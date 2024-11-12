@@ -10,7 +10,6 @@ import 'prismjs/components/prism-python';
 import { useTranslation } from '../hooks/useTranslation';
 import { useState } from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { SettingsModal } from '../components/SettingsModal';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,7 +22,6 @@ import { knownLanguages } from './api/schemas/translation-object-schema';
 import { LanguageSelector, languageToPrismLanguage } from '@/components/LanguageSelector';
 import { cn } from "@/lib/utils";
 import { ConversionArrow } from '@/components/ConversionArrow';
-import { modelOptions, ModelOptions } from "@/app/api/schemas/translation-object-schema";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from '@/components/AppSidebar';
 
@@ -49,14 +47,15 @@ export default function Chat() {
     setModel
   } = useTranslation();
 
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
   return (
     <Tooltip.Provider delayDuration={200}>
       <SidebarProvider defaultOpen={false}>
         <AppSidebar
           currentModel={model}
           onModelChange={setModel}
+          availableLibraries={availableLibraries}
+          setAvailableLibraries={setAvailableLibraries}
+          targetLanguage={targetLanguage}
         />
         <SidebarTrigger />
         <div className="min-h-screen w-full">
@@ -121,31 +120,6 @@ export default function Chat() {
                     setLanguage={setTargetLanguage}
                     knownLanguages={knownLanguages}
                   />
-                  <div className="absolute top-2 right-2 flex gap-2">
-
-                    <Tooltip.Root>
-                      <Tooltip.Trigger asChild>
-                        <button
-                          onClick={() => setIsSettingsOpen(true)}
-                          className="p-2 hover:bg-blue-300 rounded-full absolute top-2 right-2"
-                          aria-label="Configure Python libraries"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                          </svg>
-                        </button>
-                      </Tooltip.Trigger>
-                      <Tooltip.Portal>
-                        <Tooltip.Content
-                          className="bg-gray-800 text-white px-4 py-2 rounded-md text-sm"
-                          sideOffset={5}
-                        >
-                          Configure available Python libraries
-                          <Tooltip.Arrow className="fill-gray-800" />
-                        </Tooltip.Content>
-                      </Tooltip.Portal>
-                    </Tooltip.Root>
-                  </div>
                 </CardHeader>
                 <CardContent className="flex-1 min-h-0 overflow-auto relative">
                   {isLoading && (
@@ -230,13 +204,6 @@ export default function Chat() {
                 )}
               </Card>
             </div>
-
-            <SettingsModal
-              isOpen={isSettingsOpen}
-              onClose={() => setIsSettingsOpen(false)}
-              availableLibraries={availableLibraries}
-              setAvailableLibraries={setAvailableLibraries}
-            />
           </div>
         </div>
       </SidebarProvider>
