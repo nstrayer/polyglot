@@ -1,43 +1,73 @@
-# AI SDK, Next.js, and OpenAI Chat Example
+# Polyglot - AI-Powered Code Translation Tool
 
-This example shows how to use the [AI SDK](https://sdk.vercel.ai/docs) with [Next.js](https://nextjs.org/) and [OpenAI](https://openai.com) to create a ChatGPT-like AI-powered streaming chat bot.
+Polyglot is an experimental React application that translates code between different programming languages (currently supporting Python, R, TypeScript, and Go). It's unique in that it provides the AI model with context about the user's installed packages, potentially improving translation accuracy by considering available dependencies.
 
-## Deploy your own
+## Features
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=ai-sdk-example):
+- Translate between Python, R, TypeScript, and Go
+- Real-time translation using AI models (OpenAI GPT-4 and Anthropic Claude)
+- Context-aware translations using installed package information
+- Interactive UI with syntax highlighting
+- Feedback loop for translation improvements
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fai%2Ftree%2Fmain%2Fexamples%2Fnext-openai&env=OPENAI_API_KEY&project-name=ai-sdk-next-openai&repository-name=ai-sdk-next-openai)
+## Getting Started
 
-## How to use
+Unfortunately, AI APIs are expensive, so to use this app you'll need to run it locally with your own API keys. Fortunately, it's easy to get started...
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### Prerequisites
+
+- Node.js 18.0.0 or higher
+- npm or yarn
+- API keys for either OpenAI or Anthropic (or both)
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/ai/tree/main/examples/next-openai next-openai-app
+git clone https://github.com/nstrayer/polyglot.git
+cd polyglot
 ```
+
+2. Install dependencies:
 
 ```bash
-yarn create next-app --example https://github.com/vercel/ai/tree/main/examples/next-openai next-openai-app
+npm install
 ```
+3. Open the `.env.local.template` file in the root directory and replace the placeholder values with your API keys. When finished, rename the file to `.env.local`.
+
+4. Start the development server:
 
 ```bash
-pnpm create next-app --example https://github.com/vercel/ai/tree/main/examples/next-openai next-openai-app
+npm run dev
 ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To run the example locally you need to:
+## How It Works
 
-1. Sign up at [OpenAI's Developer Platform](https://platform.openai.com/signup).
-2. Go to [OpenAI's dashboard](https://platform.openai.com/account/api-keys) and create an API KEY.
-3. If you choose to use external files for attachments, then create a [Vercel Blob Store](https://vercel.com/docs/storage/vercel-blob).
-4. Set the required environment variable as the token value as shown [the example env file](./.env.local.example) but in a new file called `.env.local`
-5. `pnpm install` to install the required dependencies.
-6. `pnpm dev` to launch the development server.
+1. Enter your source code in the left editor
+2. Select the source and target languages
+3. Provide your installed packages list (use the sidebar)
+4. Click "Convert" to translate
+5. Optionally provide feedback to improve the translation
 
-## Learn More
+The application uses the installed packages information to make better decisions about library usage in the translated code. For example, if you're translating from R to Python and have `pandas` installed, it might prefer using `pandas` over base Python data structures.
 
-To learn more about OpenAI, Next.js, and the AI SDK take a look at the following resources:
+## Contributing
 
-- [AI SDK docs](https://sdk.vercel.ai/docs)
-- [Vercel AI Playground](https://play.vercel.ai)
-- [OpenAI Documentation](https://platform.openai.com/docs) - learn about OpenAI features and API.
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+Contributions are welcome! This is an experimental project aimed at exploring AI-powered code translation. Feel free to open issues or submit pull requests.
+
+## License
+
+[MIT License](LICENSE)
+
+## Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- Uses [Tailwind CSS](https://tailwindcss.com/) for styling
+- Base components from [shadcn/ui](https://ui.shadcn.com/)
+- AI powered by [OpenAI](https://openai.com/) and [Anthropic](https://anthropic.com/)
+
+## Note
+
+This is an experimental project and translations may not be perfect. Always review and test translated code before using in production environments.
