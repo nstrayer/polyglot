@@ -5,7 +5,6 @@ import { KnownLanguages, ModelOptions } from "@/app/api/schemas/translation-obje
 import {
     Sidebar,
     SidebarContent,
-    SidebarGroup,
     SidebarHeader,
 } from "@/components/ui/sidebar";
 import { LibrariesSection } from "@/components/LibrariesSection";

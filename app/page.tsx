@@ -8,7 +8,6 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-python';
 import { useTranslation } from '../hooks/useTranslation';
-import { useState } from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { Button } from "@/components/ui/button";
 import {

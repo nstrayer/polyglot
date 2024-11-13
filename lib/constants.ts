@@ -12,7 +12,6 @@ chat$chat("What is the capital of the moon?")
 chat$chat("Are you sure about that?")
 `
 
-// Other constants can be added here 
 export const samplePipList = `Package                  Version
 ------------------------ -----------
 aiohappyeyeballs         2.4.3
