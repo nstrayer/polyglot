@@ -2,6 +2,8 @@
 
 Polyglot is an experimental React application that translates code between different programming languages (currently supporting Python, R, TypeScript, and Go). It's unique in that it provides the AI model with context about the user's installed packages, potentially improving translation accuracy by considering available dependencies.
 
+![Polyglot Code Translation Tool](./polyglot.jpeg)
+
 ## Features
 
 - Translate between Python, R, TypeScript, and Go
